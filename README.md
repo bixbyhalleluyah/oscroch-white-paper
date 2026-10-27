@@ -1,4 +1,4 @@
-# SchemaLock
+# oscroch-white-paper
 
 **Lock your API contract down before your backend drifts out of it.**
 
@@ -8,7 +8,7 @@
 [![Rust](https://img.shields.io/badge/rust-1.86+-orange?logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](#license)
 
-SchemaLock is a small, fast, CI-friendly **API contract test harness** for
+**oscroch-white-paper** (SchemaLock) is a small, fast, CI-friendly **API contract test harness** for
 Stellar backend services. It reads one declarative YAML file, fires requests at
 your running backend, and fails the build the moment a contract drifts —
 without a DAST scanner, a browser, or bespoke per-repo test boilerplate.
@@ -46,7 +46,7 @@ schemalock test --config schemalock.yaml --base-url http://127.0.0.1:8000
 ```
 
 ```
-SchemaLock — Escrow API contract
+oscroch-white-paper — Escrow API contract
 
 PASSED  get_missing_escrow_is_404_not_leaked :: status — got 404, expected one of [404]
 PASSED  get_missing_escrow_is_404_not_leaked :: error_envelope — envelope 'standard' shape stable
@@ -94,7 +94,7 @@ others, so all findings surface in a single run.
 
 ```bash
 pip install -e ".[dev]"      # from the repo, with dev deps
-pip install schemalock       # once published to PyPI
+pip install oscroch-white-paper  # once published to PyPI
 ```
 
 Requires Python 3.9+. Runtime dependencies are just `httpx` and `PyYAML`.
@@ -130,7 +130,7 @@ schemalock test --config examples/escrow_api.yaml --base-url http://127.0.0.1:80
 
 ## Bootstrap a contract from real traffic
 
-Don't want to hand-write the YAML? Install the **SchemaLock Recorder** browser
+Don't want to hand-write the YAML? Install the **oscroch-white-paper Recorder** browser
 extension ([Chrome/Edge, Manifest V3](./browser-extension/README.md)), drive
 your app while it records, and let the tool write the contract:
 
@@ -253,8 +253,8 @@ Notes:
 ## CI integration
 
 ```yaml
-# .github/workflows/schemalock.yml
-name: SchemaLock
+# .github/workflows/contract.yml
+name: oscroch-white-paper
 
 on:
   pull_request:
@@ -267,8 +267,8 @@ jobs:
 
       # Start your backend, e.g. docker compose up -d api
 
-      - name: Install SchemaLock
-        run: pip install schemalock
+      - name: Install oscroch-white-paper
+        run: pip install -e ".[dev]"
 
       - name: Lock the API contract
         run: schemalock test --config schemalock.yaml --base-url http://127.0.0.1:8000
@@ -277,7 +277,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: schemalock-report
+          name: oscroch-white-paper-report
           path: report.json
 ```
 
