@@ -80,6 +80,7 @@ CI step.
 | 📦 **Error envelope stability** | required fields + types asserted; additive fields allowed |
 | 🔐 **Auth boundary checks** | unauthenticated replay must get 401/403 — never 200, never 404 |
 | 🎬 **Bootstrap from live traffic** | Chrome extension records real requests → `schemalock scaffold` writes the YAML for you |
+| 🖥️ **Studio & Web Frontend** | Standalone visual UI & extension repo: [`schemalock-frontend`](../schemalock-frontend) |
 | 🪶 **CI-first** | seconds-fast, pytest-style output, JSON report artifact, non-zero exit on failure |
 | 🧬 **Dual-language** | Python and Rust implementations with a byte-identical-report parity gate |
 | 🛡️ **Security-minded** | no redirects, bounded response reads, secret redaction, env-var auth |
